@@ -27,7 +27,8 @@ public class keisan extends AppCompatActivity {
 
 
         TextView m1 = (TextView) findViewById(R.id.textView);
-        if (bu == R.id.button) {
+
+       if (bu == R.id.button) {
             m1.setText(String.valueOf(val + va2));
 
         }else if (bu2 == R.id.button2) {

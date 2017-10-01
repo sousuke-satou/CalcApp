@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    EditText n1, n2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,37 +35,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        EditText n1 = (EditText) findViewById(R.id.editText);
-        EditText n2 = (EditText) findViewById(R.id.editText2);
+        n1 = (EditText) findViewById(R.id.editText);
+        n2 = (EditText) findViewById(R.id.editText2);
 
 
         Intent intent = new Intent(this, keisan.class);
 
 
+        if (n1.length() != 0 && n2.length() != 0) {
 
 
+            double num = Double.parseDouble(n1.getText().toString());
+            double num2 = Double.parseDouble(n2.getText().toString());
 
-        double num = Double.parseDouble(n1.getText().toString());
-        double num2 = Double.parseDouble(n2.getText().toString());
+
+            intent.putExtra("n1", num);
+            intent.putExtra("n2", num2);
+
+            if (v.getId() == R.id.button) {
+                intent.putExtra("button", R.id.button);
+            } else if (v.getId() == R.id.button2) {
+                intent.putExtra("button2", R.id.button2);
+            } else if (v.getId() == R.id.button3) {
+                intent.putExtra("button3", R.id.button3);
+            } else if (v.getId() == R.id.button4) {
+                intent.putExtra("button4", R.id.button4);
+
+            }
+
+            startActivity(intent);
 
 
-        intent.putExtra("n1", num);
-        intent.putExtra("n2", num2);
-
-        if (v.getId() == R.id.button) {
-            intent.putExtra("button", R.id.button);
-        }else if (v.getId() == R.id.button2) {
-            intent.putExtra("button2", R.id.button2);
-        }else if (v.getId() == R.id.button3) {
-            intent.putExtra("button3", R.id.button3);
-        }else if (v.getId() == R.id.button4) {
-            intent.putExtra("button4", R.id.button4);
-
+        }else {
+            Toast.makeText(this, "未入力です", Toast.LENGTH_LONG).show();
         }
 
-        startActivity(intent);
-
-
     }
+
+
 
 }
